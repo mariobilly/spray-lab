@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spray Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 4.2M6.6 6.6C3.8 8.4 2 12 2 12s3.5 7 10 7c1.8 0 3.4-.5 4.8-1.3M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6M14 11v6M5 7l1 13h12l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M6 3h12v18l-6-4-6 4z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15l12.5-7.5z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h4l5-4.5v15L7 15H3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h4l5-4.5v15L7 15H3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="m15.5 9.5 5 5M20.5 9.5l-5 5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-grip" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="9" cy="6" r="1.4"/><circle cx="15" cy="6" r="1.4"/><circle cx="9" cy="12" r="1.4"/><circle cx="15" cy="12" r="1.4"/><circle cx="9" cy="18" r="1.4"/><circle cx="15" cy="18" r="1.4"/></g></symbol>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#5a5a5a" stroke-width="1.4"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div id="app">
+  <aside id="left">
+    <section class="card" id="layersCard">
+      <header>
+        <span class="h">Layers</span>
+        <div class="icons">
+          <button class="ib" id="addLayerBtn" title="Add a layer"><svg><use href="#i-plus"/></svg></button>
+          <button class="ib" id="savePresetBtn" title="Save these layers as one of my presets"><svg><use href="#i-bookmark"/></svg></button>
+        </div>
+      </header>
+      <div class="srcThumb" id="srcThumbWrap" title="The original"><img id="srcThumb" alt=""></div>
+      <ul id="layerList"></ul>
+      <div id="addMenu" class="menu hidden">
+        <button data-type="blur">Gaussian Blur</button>
+        <button data-type="mix">Layer Mix</button>
+        <button data-type="gradient">Gradient Map</button>
+      </div>
+    </section>
+    <section class="card" id="settingsCard">
+      <header>
+        <span class="h" id="setTitle">Settings</span>
+        <div class="icons">
+          <button class="ib" id="rndBtn" title="Randomize this layer (R)"><svg><use href="#i-shuffle"/></svg></button>
+          <button class="ib" id="resetBtn" title="Reset this layer"><svg><use href="#i-reset"/></svg></button>
+        </div>
+      </header>
+      <div id="settings" class="scroll"></div>
+    </section>
+  </aside>
+
+  <main id="stage">
+    <div id="topbar">
+      <div class="brand"><img src="/favicon.ico" alt=""><span>Spray Lab</span></div>
+      <button class="pill" id="openBtn" title="Open a photo or video (Ctrl+O)">Open</button>
+      <span id="fileName" class="muted"></span>
+      <span class="spacer"></span>
+      <span class="muted hint">Hold <kbd>Space</kbd> for the original · <kbd>R</kbd> randomize · <kbd>Ctrl</kbd>+<kbd>Z</kbd> undo</span>
+      <span id="renderMs" class="muted mono"></span>
+    </div>
+    <div id="viewport">
+      <img id="view" alt="" draggable="false">
+      <div id="empty">
+        <div class="emptyInner">
+          <div class="big">Drop a photo or video here</div>
+          <div class="muted">or</div>
+          <button class="pill solid" id="openBtn2">Open a file</button>
+          <div class="muted small">PNG · JPG · WebP · MP4 · MOV · WebM · MKV · GIF</div>
+        </div>
+      </div>
+      <div id="origBadge" class="badge hidden">Original</div>
+      <div id="dropHint" class="hidden">Drop to open</div>
+    </div>
+    <div id="transport" class="hidden">
+      <button class="ib big" id="playBtn" title="Play / pause (P)"><svg><use href="#i-play"/></svg></button>
+      <input type="range" id="scrub" min="0" max="0" value="0" step="1">
+      <span id="timeLabel" class="mono muted">0:00.00</span>
+      <button class="ib big hidden" id="muteBtn" title="Sound on · press to mute (M)"><svg><use href="#i-sound"/></svg></button>
+      <audio id="audio" preload="auto"></audio>
+    </div>
+    <div id="bottombar">
+      <label class="dd" title="Zoom"><select id="zoomSel">
+        <option value="fit">Fit</option><option value="0.25">25%</option><option value="0.5">50%</option>
+        <option value="1">100%</option><option value="2">200%</option>
+      </select><svg><use href="#i-chev"/></svg></label>
+      <span class="sep"></span>
+      <label class="dd fmt" title="Export format"><select id="fmtSel"></select><svg><use href="#i-chev"/></svg></label>
+      <label class="dd" title="Export size (never upscales)"><select id="sizeSel">
+        <option value="0">Full size</option><option value="3840">Max 3840</option><option value="1920">Max 1920</option><option value="1280">Max 1280</option>
+      </select><svg><use href="#i-chev"/></svg></label>
+      <label class="dd hidden" id="secWrap" title="Length of the photo clip"><select id="secSel">
+        <option value="3">3 s</option><option value="5" selected>5 s</option><option value="8">8 s</option><option value="10">10 s</option><option value="15">15 s</option>
+      </select><svg><use href="#i-chev"/></svg></label>
+      <button class="export" id="exportBtn" title="Export (Ctrl+E)">Export</button>
+    </div>
+    <div id="jobPanel" class="hidden">
+      <div class="jobTop"><span id="jobText">Exporting…</span><span class="spacer"></span>
+        <button class="pill" id="cancelBtn">Cancel</button>
+        <button class="pill solid hidden" id="showBtn">Show in folder</button>
+        <button class="pill hidden" id="closeJobBtn">Close</button></div>
+      <div class="bar"><div id="jobBar"></div></div>
+    </div>
+  </main>
+
+  <aside id="right">
+    <section class="card grow">
+      <header><span class="h">Presets</span></header>
+      <div id="presetGrid" class="grid scroll"></div>
+      <header class="sub"><span class="h">My presets</span></header>
+      <div id="myPresetGrid" class="grid"></div>
+      <div id="myEmpty" class="muted small pad">Press the <svg class="inl"><use href="#i-bookmark"/></svg> in Layers to keep a look here.</div>
+    </section>
+  </aside>
+</div>
+
+<div id="texPicker" class="popover hidden">
+  <div class="popHead"><span class="h">Texture</span><span class="spacer"></span><button class="pill" id="texLoadBtn">Load your own…</button></div>
+  <div id="texGrid" class="texGrid"></div>
+  <div class="muted small pad">Drop an image here to use it as a texture. Grey textures work best (paper, spray scans).</div>
+</div>
+
+<div id="namePrompt" class="popover hidden">
+  <div class="popHead"><span class="h">Save preset</span></div>
+  <input id="presetName" type="text" maxlength="60" placeholder="Preset name">
+  <div class="row end"><button class="pill" id="nameCancel">Cancel</button><button class="pill solid" id="nameOk">Save</button></div>
+</div>
+
+<input type="color" id="colorInput" class="hiddenInput" tabindex="-1">
+<div id="toast" class="hidden"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
