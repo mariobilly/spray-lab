@@ -8,6 +8,28 @@ Map**, with presets, editable layers and MP4 export that keeps the sound.
 Inspired by the spray-paint effect shown in a reel by [Effect.app](https://www.instagram.com/reel/Db-umgRuf2n/).
 Spray Lab is an independent project, not affiliated with Effect.app, and shares no code with it.
 
+![Spray Lab](docs/screenshot.jpg)
+
+<!-- videos:start -->
+## See it in action
+
+<p align="center"><a href="docs/videos/tutorial.mp4"><img src="docs/videos/tutorial.jpg" alt="How it works" width="640"></a><br><b>▶ <a href="docs/videos/tutorial.mp4">How it works</a></b> (0:53, with captions)</p>
+
+**Made with Spray Lab, from a public-domain portrait (The Met) and a free Pexels clip**
+
+<table><tr>
+<td width="33%" align="center"><a href="docs/videos/examples/dancer-spray.mp4"><img src="docs/videos/examples/dancer-spray.gif" alt="Spray"></a><br><a href="docs/videos/examples/dancer-spray.mp4">Spray</a></td>
+<td width="33%" align="center"><a href="docs/videos/examples/dancer-neon-vapor.mp4"><img src="docs/videos/examples/dancer-neon-vapor.gif" alt="Neon Vapor"></a><br><a href="docs/videos/examples/dancer-neon-vapor.mp4">Neon Vapor</a></td>
+<td width="33%" align="center"><a href="docs/videos/examples/dancer-thermal.mp4"><img src="docs/videos/examples/dancer-thermal.gif" alt="Thermal"></a><br><a href="docs/videos/examples/dancer-thermal.mp4">Thermal</a></td>
+</tr><tr>
+<td width="33%" align="center"><a href="docs/videos/examples/portrait-spray-boil.mp4"><img src="docs/videos/examples/portrait-spray-boil.gif" alt="Spray + boil (photo)"></a><br><a href="docs/videos/examples/portrait-spray-boil.mp4">Spray + boil (photo)</a></td>
+<td width="33%" align="center"><a href="docs/videos/examples/portrait-bubblegum-boil.mp4"><img src="docs/videos/examples/portrait-bubblegum-boil.gif" alt="Bubblegum + boil"></a><br><a href="docs/videos/examples/portrait-bubblegum-boil.mp4">Bubblegum + boil</a></td>
+<td width="33%" align="center"><a href="docs/videos/examples/portrait-cobalt-boil.mp4"><img src="docs/videos/examples/portrait-cobalt-boil.gif" alt="Cobalt + boil"></a><br><a href="docs/videos/examples/portrait-cobalt-boil.mp4">Cobalt + boil</a></td>
+</tr></table>
+
+Click any picture to play the video. Example sources: *Portrait of a Young Man* by Antonello da Messina, [The Met](https://www.metmuseum.org/art/collection/search/435581) (CC0); "A Woman Dancing Gracefully" by [Pavel Danilyuk](https://www.pexels.com/video/a-woman-dancing-gracefully-6939968/) (Pexels licence).
+<!-- videos:end -->
+
 ## Install
 
 You need:
@@ -100,6 +122,10 @@ server (previews, every endpoint, PNG/JPG/MP4 exports, audio, frame-rate changes
 
 ## Credits
 - Inspiration: the spray-paint effect shown in a reel by [Effect.app](https://www.instagram.com/reel/Db-umgRuf2n/).
+- Footage in the tutorial and examples: *Portrait of a Young Man* by Antonello da Messina,
+  [The Metropolitan Museum of Art](https://www.metmuseum.org/art/collection/search/435581) (CC0), and "A Woman
+  Dancing Gracefully" by [Pavel Danilyuk](https://www.pexels.com/video/a-woman-dancing-gracefully-6939968/)
+  ([Pexels licence](https://www.pexels.com/license/)).
 
 ## Licence
 
